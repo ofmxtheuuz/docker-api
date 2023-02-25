@@ -1,0 +1,16 @@
+datasource db {
+  provider = "mysql"
+  url      = "mysql://mxtz:mxtz2023@mysql:3306/api_nest"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets   = ["debian-openssl-1.1.x"]
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  password String
+}

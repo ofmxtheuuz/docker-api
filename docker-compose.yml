@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: mxtz2023
+      MYSQL_DATABASE: api_nest
+      MYSQL_USER: mxtz
+      MYSQL_PASSWORD: mxtz2023
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  app:
+    build: .
+    environment:
+      DATABASE_URL: mysql://example:example@mysql:3306/example
+    depends_on:
+      - mysql
+    ports:
+      - "3000:3000"
+volumes:
+  mysql_data:
